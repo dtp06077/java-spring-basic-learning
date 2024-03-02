@@ -77,13 +77,13 @@ public class SingletonTest {
         StatefulService statefulService2=ac.getBean(StatefulService.class);
 
         //ThreadA: 김희성 10000원 주문
-        statefulService1.order("김희성", 10000);
+        int huiseongPrice = statefulService1.order("김희성", 10000);
         //ThreadB: 김보성 20000원 주문
-        statefulService2.order("김보성", 20000);
+        int boseongPrice = statefulService2.order("김보성", 20000);
 
         //김희성은 10000원을 주문했지만 20000원이 출력됨 -> 공유 필드(price)로 인한 오류
-        System.out.println("김희성's price = "+statefulService1.getPrice());
-        assertThat(statefulService1.getPrice()).isEqualTo(20000);
+        System.out.println(huiseongPrice);
+//        assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
 
     @Configuration

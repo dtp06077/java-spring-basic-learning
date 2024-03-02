@@ -1,14 +1,15 @@
 package hello.core.singleton;
 
 public class StatefulService {
-    private int price;
+//    private int price;
 
-    void order(String name, int price){
+    int  order(String name, int price){
         System.out.println("name = "+name+" price = "+price);
-        this.price=price;
-    }
-
-    public int getPrice(){
+//        this.price=price;
         return price;
     }
+
+//    public int getPrice(){
+//        return price;
+//    }
 }
