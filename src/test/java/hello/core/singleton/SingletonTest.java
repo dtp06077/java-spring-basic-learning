@@ -83,6 +83,7 @@ public class SingletonTest {
 
         //김희성은 10000원을 주문했지만 20000원이 출력됨 -> 공유 필드(price)로 인한 오류
         System.out.println(huiseongPrice);
+        System.out.println(boseongPrice);
 //        assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
 

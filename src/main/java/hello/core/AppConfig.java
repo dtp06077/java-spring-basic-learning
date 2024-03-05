@@ -16,16 +16,22 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService(){
+        //예상 : 한 번 호출 -> O
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository(){
+        //예상 : 세 번 호출 -> X -> 한 번 호출
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
+        //예상 : 한 번 호출 O
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
