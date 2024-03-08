@@ -11,6 +11,7 @@ import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+//@Configuration없이 @Bean만 적용해도 스프링 빈으로 등록되지만, 싱글톤을 보장하지 않음
 @Configuration
 public class AppConfig {
 

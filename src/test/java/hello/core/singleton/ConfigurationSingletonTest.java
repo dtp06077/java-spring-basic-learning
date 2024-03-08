@@ -32,4 +32,16 @@ public class ConfigurationSingletonTest {
         assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
     }
+
+    @Test
+    @DisplayName("CGLIB 라이브러리 확인")
+    void configurationDeep(){
+        ApplicationContext ac=new AnnotationConfigApplicationContext(AppConfig.class);
+        //AppCofig도 스프링 빈으로 등록됨.
+        AppConfig appConfig=ac.getBean(AppConfig.class);
+
+        //class hello.core.AppConfig를 예상했지만 xxxCGLIB이 출력되는 것을 확인
+        System.out.println("appConfig = "+appConfig.getClass());
+        //AppConfig@CGLIB은 AppConfig의 자식타입으로, AppConfig 타입으로 조회 가능
+    }
 }
