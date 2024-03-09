@@ -2,6 +2,8 @@ package hello.core.scan;
 
 import hello.core.AutoAppConfig;
 import hello.core.member.MemberService;
+import hello.core.order.OrderService;
+import hello.core.order.OrderServiceImpl;
 import hello.core.scan.filter.BeanA;
 import hello.core.scan.filter.BeanB;
 import hello.core.scan.filter.MyExcludeComponent;
@@ -20,13 +22,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
 public class AutoAppConfigTest {
-
     @Test
     @DisplayName("자동 빈 등록 테스트")
     void basicScan() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
-        MemberService memberService=ac.getBean(MemberService.class);
-        assertThat(memberService).isInstanceOf(MemberService.class);
+        OrderService orderService=ac.getBean(OrderService.class);
+        assertThat(orderService).isInstanceOf(OrderServiceImpl.class);
     }
 
     @Test

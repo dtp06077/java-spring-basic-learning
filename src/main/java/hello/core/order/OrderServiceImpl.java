@@ -14,8 +14,34 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
+    //일반 메서드 주입
+    //한번에 여러 필드를 주입 받을 수 있고 일반적으로 잘 사용하지 않음
+//    @Autowired
+//    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy){
+//        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+discountPolicy);
+//        this.memberRepository=memberRepository;
+//        this.discountPolicy=discountPolicy;
+//    }
+
+    //수정자 주입
+    //선택, 변경 가능성이 있는 의존관계에 사용
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository){
+//        System.out.println("memberRepository =" +memberRepository);
+//        this.memberRepository=memberRepository;
+//    }
+
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy){
+//        System.out.println("discountPolicy = "+discountPolicy);
+//        this.discountPolicy=discountPolicy;
+//    }
+
+    //생성자 주입
+    //불변, 필수인 의존관계에 사용
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
