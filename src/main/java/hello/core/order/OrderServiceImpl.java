@@ -5,14 +5,16 @@ import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private  MemberRepository memberRepository;
-    private  DiscountPolicy discountPolicy;
+    private  final MemberRepository memberRepository;
+    private  final DiscountPolicy discountPolicy;
 
     //일반 메서드 주입
     //한번에 여러 필드를 주입 받을 수 있고 일반적으로 잘 사용하지 않음
@@ -39,12 +41,12 @@ public class OrderServiceImpl implements OrderService {
 
     //생성자 주입
     //불변, 필수인 의존관계에 사용
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+discountPolicy);
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+    //롬복을 사용함으로서 생성자 주입 불필요
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+discountPolicy);
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
