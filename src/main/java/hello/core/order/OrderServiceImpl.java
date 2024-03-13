@@ -43,10 +43,10 @@ public class OrderServiceImpl implements OrderService {
     //생성자 주입
     //불변, 필수인 의존관계에 사용
     //롬복을 사용함으로서 생성자 주입 불필요
-    public OrderServiceImpl(MemberRepository memberRepository,@MainDiscountPolicy DiscountPolicy DiscountPolicy) {
-        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+DiscountPolicy);
+    public OrderServiceImpl(MemberRepository memberRepository,@MainDiscountPolicy DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+discountPolicy);
         this.memberRepository = memberRepository;
-        this.discountPolicy = DiscountPolicy;
+        this.discountPolicy = discountPolicy;
     }
 
     @Override

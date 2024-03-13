@@ -14,5 +14,5 @@
         <constructor-arg name="discountPolicy" ref="discountPolicy"/>
     </bean>
 
-    <bean id="discountPolicy" class="hello.core.discount.FixDiscountPolicy"/>
+    <bean id="discountPolicy" class="hello.core.discount.RateDiscountPolicy"/>
 </beans>
