@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
@@ -42,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
     //생성자 주입
     //불변, 필수인 의존관계에 사용
     //롬복을 사용함으로서 생성자 주입 불필요
-    public OrderServiceImpl(MemberRepository memberRepository,@Qualifier("fixDiscountPolicy") DiscountPolicy DiscountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository,@MainDiscountPolicy DiscountPolicy DiscountPolicy) {
         System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+DiscountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = DiscountPolicy;
