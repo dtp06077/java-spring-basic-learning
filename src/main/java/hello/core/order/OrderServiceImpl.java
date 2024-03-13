@@ -7,10 +7,10 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     private  final MemberRepository memberRepository;
@@ -42,11 +42,11 @@ public class OrderServiceImpl implements OrderService {
     //생성자 주입
     //불변, 필수인 의존관계에 사용
     //롬복을 사용함으로서 생성자 주입 불필요
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+discountPolicy);
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    public OrderServiceImpl(MemberRepository memberRepository,@Qualifier("fixDiscountPolicy") DiscountPolicy DiscountPolicy) {
+        System.out.println("memberRepository = "+memberRepository+" discountPolicy = "+DiscountPolicy);
+        this.memberRepository = memberRepository;
+        this.discountPolicy = DiscountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
