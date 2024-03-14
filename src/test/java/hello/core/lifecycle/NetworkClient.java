@@ -3,6 +3,9 @@ package hello.core.lifecycle;
 // import org.springframework.beans.factory.DisposableBean;
 // import org.springframework.beans.factory.InitializingBean;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class NetworkClient { //implements InitializingBean, DisposableBean {
 
     private String url;
@@ -26,11 +29,13 @@ public class NetworkClient { //implements InitializingBean, DisposableBean {
         System.out.println("close: " + url);
     }
 
+    @PostConstruct
     public void init(){
         connect();
         call("초기화 연결 메시지");
     }
 
+    @PreDestroy
     public void close(){
         disconnect();
     }
