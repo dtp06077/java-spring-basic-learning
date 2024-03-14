@@ -20,7 +20,8 @@ public class BeanLifeCycleTest {
     @Configuration
     static class LifeCycleConfig{
 
-        @Bean
+        @Bean(initMethod = "init", destroyMethod = "close")
+        //종료 메서드 추론을 통해 메서드 명이 "close"이면 destroyMethod 생략 가능
         public NetworkClient networkClient(){
             NetworkClient networkClient=new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
