@@ -16,7 +16,9 @@ public class PrototypeTest {
     @DisplayName("프로토타입 스코프 빈 테스트")
     public void prototypeBeanTest(){
         ConfigurableApplicationContext ac=new AnnotationConfigApplicationContext(PrototypeBean.class);
+        System.out.println("find prototypeBean1");
         PrototypeBean prototypeBean1=ac.getBean(PrototypeBean.class);
+        System.out.println("find prototypeBean2");
         PrototypeBean prototypeBean2=ac.getBean(PrototypeBean.class);
 
         System.out.println("prototypeBean1 = " + prototypeBean1);
