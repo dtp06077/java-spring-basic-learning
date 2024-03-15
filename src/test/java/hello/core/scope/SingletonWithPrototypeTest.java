@@ -2,9 +2,9 @@ package hello.core.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
@@ -48,20 +48,25 @@ public class SingletonWithPrototypeTest {
         SingletonBean singletonBean2=ac.getBean(SingletonBean.class);
         int count2=singletonBean2.logic();
         //변경된 값
-        assertThat(count2).isEqualTo(2);
+        assertThat(count2).isEqualTo(1);
 
         ac.close();
     }
 
     @Scope("singleton")
     static class SingletonBean{
-        private final PrototypeBean prototypeBean;
+        //private final PrototypeBean prototypeBean;
 
-        public SingletonBean(PrototypeBean prototypeBean){
-            this.prototypeBean=prototypeBean;
+        //의존관계를 외부에서 주입받는게 아닌 직접 필요한 의존관계를 찾는 것을 Dependency Lookup(DL),
+        //의존관계 탐색(조회)이라고 한다.
+        //지정한 빈을 컨테이너에서 대신 찾아주는 DL을 제공하는 ObjectProvider
+        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+
+        public SingletonBean(ObjectProvider<PrototypeBean> prototypeBeanProvider){
+            this.prototypeBeanProvider=prototypeBeanProvider;
         }
-
         public int logic(){
+            PrototypeBean prototypeBean=prototypeBeanProvider.getObject();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
