@@ -60,7 +60,7 @@ public class SingletonWithPrototypeTest {
         //의존관계를 외부에서 주입받는게 아닌 직접 필요한 의존관계를 찾는 것을 Dependency Lookup(DL),
         //의존관계 탐색(조회)이라고 한다.
         //지정한 빈을 컨테이너에서 대신 찾아주는 DL을 제공하는 ObjectProvider
-        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+        private final ObjectProvider<PrototypeBean> prototypeBeanProvider;
 
         public SingletonBean(ObjectProvider<PrototypeBean> prototypeBeanProvider){
             this.prototypeBeanProvider=prototypeBeanProvider;
